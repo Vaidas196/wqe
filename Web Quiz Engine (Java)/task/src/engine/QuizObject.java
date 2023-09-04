@@ -21,17 +21,17 @@ public class QuizObject {
     @Size(min = 2)
     @JsonView(View.Base.class)
     private ArrayList<String> options;
-    @JsonView(View.Admin.class)
-    private List<Integer> answer;
+  //  @JsonView(View.Base.class)
+    private int[] answer;
 
-    public QuizObject(String title, String text, ArrayList<String> options, List<Integer> answer) {
+    public QuizObject(String title, String text, ArrayList<String> options, int[] answer) {
         this.title = title;
         this.text = text;
         this.options = options;
         this.answer = answer;
     }
 
-    public QuizObject(Long id, String title, String text, ArrayList<String> options, ArrayList<Integer> answer) {
+    public QuizObject(Long id, String title, String text, ArrayList<String> options, int[] answer) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -74,11 +74,11 @@ public class QuizObject {
         this.options = options;
     }
 
-    public List<Integer> getAnswer() {
+    public int[] getAnswer() {
         return answer;
     }
 
-    public void setAnswer(List<Integer> answer) {
+    public void setAnswer(int[] answer) {
         this.answer = answer;
     }
 }

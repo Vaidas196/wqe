@@ -23,7 +23,7 @@ private final QuizService quizService;
 
     @PostMapping(path = "/api/quizzes", produces = "application/json")
     public ResponseEntity<QuizObject> createNewQuiz (@Valid @RequestBody QuizObject quizObject) {
-     return quizService.createNewQuiz(quizObject);
+    return quizService.createNewQuiz(quizObject);
     }
 
     @GetMapping("/api/quizzes")
@@ -40,11 +40,12 @@ private final QuizService quizService;
     }
 
 
-   @PostMapping(path="api/quizzes/{id}/solve", produces = "application/json")
-    public QuizResponse solveQuiz(
+   @PostMapping(path = "api/quizzes/{id}/solve", produces = "application/json")
+    public ResponseEntity<QuizResponse> solveQuiz(
             @PathVariable Long id,
-            @Valid @RequestParam(value = "answer", required = false) List<Integer> answer) {
-        return quizService.solveQuiz(id, answer);
+            @Valid @RequestBody UserAnswer userAnswer) {
+        QuizResponse quizResponse = quizService.solveQuiz(id, userAnswer);
+        return ResponseEntity.ok(quizResponse);
     }
 
 
